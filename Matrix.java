@@ -1,8 +1,9 @@
+//Version 0.2a
 public class Matrix {
-    int rows;
-    int columns;
-    double arr[][];
-    int augmentCol;
+    private int rows;
+    private int columns;
+    private double arr[][];
+    private int augmentCol;
 
     public Matrix(int matrixRows, int matrixColumns) {
         rows = matrixRows;
@@ -60,7 +61,12 @@ public class Matrix {
         double[][] newArr = new double[rows][newCols];
 
         if (rows != mat2.getRows()) {
-            return null;
+            try {    
+                throw new MatrixDimensionException("Number of rows do not match.");
+            }
+            catch (MatrixDimensionException exception) {
+                exception.printStackTrace();
+            }
         }
 
         for (int i = 0; i < rows; i++) {
@@ -136,8 +142,46 @@ public class Matrix {
             return sum;
         }
         else {
-            return 0.0/0.0; //Eventually, figure out how to throw an exception.
+            try {    
+                throw new MatrixDimensionException("Trace can only be computed from a square matrix.");
+            }
+            catch (MatrixDimensionException exception) {
+                exception.printStackTrace();
+            }
+            return 0;
         }
+    }
+
+    public Matrix multiply(Matrix m2) {
+        //NGL, I could rewrite this back in Matrix.java lmao
+        
+        int rows1 = rows;
+        int rows2 = m2.getRows();
+        int cols1 = columns;
+        int cols2 = m2.getColumns();
+        if (cols1 != rows2) {
+            Matrix returnMatrix = new Matrix(1,1);
+            try {    
+                throw new MatrixDimensionException("Number of rows in the second matrix do not match number of columns in the first matrix.");
+            }
+            catch (MatrixDimensionException exception) {
+                exception.printStackTrace();
+            }
+            return returnMatrix;
+            //EXCEPTION!!
+        }
+        double[][] returnArr = new double[rows1][cols2];
+        double tempVar = 0;
+        for (int i = 0; i < rows1; i++) {
+            for (int j = 0; j < cols2; j++) {
+                tempVar = 0;
+                for (int k = 0; k < cols1; k++) {
+                    returnArr[i][j] += getVal(i,k) * m2.getVal(k,j);
+                }
+            }
+        }
+        Matrix returnMatrix = new Matrix(returnArr);
+        return returnMatrix;
     }
     
 
