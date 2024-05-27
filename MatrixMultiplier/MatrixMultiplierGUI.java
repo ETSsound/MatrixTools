@@ -121,7 +121,6 @@ public class MatrixMultiplierGUI extends JFrame {
         }); 
     }
     public static void main(String args[]) {
-        System.out.println("BRUH");
         new DimensionEntryGUI();
         SwingUtilities.invokeLater(new Runnable() {
             @Override

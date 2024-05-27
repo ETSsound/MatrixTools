@@ -102,8 +102,8 @@ public class DimensionEntryGUI extends JFrame {
                     }
                     else {
                         new DimensionWarning("Incompatible matrix dimensions.");
-                        setVisible(false); //you can't see me!
-                        dispose(); //Destroy the JFrame object
+                        setVisible(false);
+                        dispose();
                     }
                 } 
                 catch (NumberFormatException e) {

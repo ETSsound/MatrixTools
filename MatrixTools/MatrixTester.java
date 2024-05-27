@@ -20,10 +20,10 @@ public class MatrixTester{
 
         
         System.out.println(mat.toString());
-        /*Matrix result = mat.multiply(a);
+        Matrix result = mat.multiply(a);
         System.out.println(result.toString());
 
-        System.out.println(result.trace()); */
+        System.out.println(a.trace());
 
         Matrix augmented = mat.augment(a);
         System.out.println(augmented.toString());
